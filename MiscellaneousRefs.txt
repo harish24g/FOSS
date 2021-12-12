@@ -1,0 +1,63 @@
+$ sudo apt-get remove git
+
+$ sudo apt install git 
+git --version
+$ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+$ sudo apt-get update
+$ sudo apt-get install gcc-9 gcc-9-base
+git config --global user.name "harish24g"
+git config --global user.email "cr7rko666@gmail.com"
+
+------ ----------------------TO PUSH MULTIPLE FILES IN A REPO ------------------------------
+go to a dummy folder
+
+code . [ goes to the designated ide and start adding files/working on the folder ]
+
+git add .
+
+git commit -m message you want without spaces
+
+git push origin main
+
+----------------------------------- to delete a file ---------------------------------------
+git rm filename git commit -m message git push origin main
+
+----------------------------------- to merge branches--------------------------------------------------------------
+git branch branchname ----> create new branch
+git checkout branchname ----> move into the new branch
+git status
+git branch --list
+
+[add a file to the branch]
+
+git add .
+
+git commit -m "message"
+
+git push origin "branchname"
+git checkout main
+git merge "which branch you want to merge"
+git commit -m "message"
+
+git push origin main
+
+------------------------------------to delete a branch----------------------------------------------------------------
+git branch -d branchname
+
+------------------------------------- other commands-------------------------------------
+git log 
+git reset
+
+--------------------VM PLAYER----------------------------------------------
+https://www.vmware.com/in/products/workstation-player/workstation-player-evaluation.html https://www.virtualbox.org/wiki/Downloads
+
+https://releases.ubuntu.com/20.04/  (download desktop image)
+
+$ chmod a+x "filename".bundle (to enable execution)
+$ sudo ./"filename".bundle (root privelages)
+
+---------------------- CLOUD SIM-------------------------------------
+https://github.com/michaelfahmy/cloudsim-task-scheduling
+
+---------------------FILE TRANSFER GUEST TO HOST----------------------
+https://www.tecmint.com/enable-share-folder-in-vmware-workstation/
