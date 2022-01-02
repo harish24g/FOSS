@@ -717,6 +717,6 @@ int main() {
 
 
 
-
+https://www.educba.com/patterns-in-c-programming/
 https://www.programiz.com/c-programming/examples
 
