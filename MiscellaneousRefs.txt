@@ -66,13 +66,28 @@ https://www.tecmint.com/enable-share-folder-in-vmware-workstation/
 sudo apt update
 sudo reboot
 create devstack user by the name stack
-sudo useradd /bin/bash -d /opt/stack -m stack
-echo " stack ALL= (ALL) NOPASSWD :ALL"| sudo tee/etc/sudoers.d/stack sudo su -stack
+sudo useradd -s/bin/bash -d /opt/stack -m stack
+echo " stack ALL= (ALL) NOPASSWD :ALL"| sudo tee/etc/sudoers.d/stack 
+sudo su -stack
 download git
-git clone https://git.ooenstack.org/devstack
+git clone https://git.openstack.org/devstack
 
 cd devstack
 Create local.conf file
+
+[[local|localrc]]
+# Password for KeyStone, Database, RabbitMQ and Service
+ADMIN_PASSWORD=StrongAdminSecret
+DATABASE_PASSWORD=$ADMIN_PASSWORD
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+# Host IP - To get your Server or VM IP, run the 'ip addr' or 'ifconfig' command
+HOST_IP=192.168.56.103 
+
+Press the ESC, then wq to save and then exit from the local.conf file. 
+Here, ADMIN_PASSWORD is the password that we will use to log into the OpenStack login page. 
+The default username for an OpenStack is 'admin'. And HOST_IP is the IP address of your system.
+To get your Server or VM IP, run the 'ifconfig' or 'ip addr' command.
 
 ./stack.sh
 
