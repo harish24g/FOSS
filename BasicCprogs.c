@@ -1,6 +1,5 @@
 // Cloud Lab--
 
-// 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
 
 // basic c progs
 
@@ -247,6 +246,477 @@ int main() {
     return 0;
 }
 --------------------------------------
+Sum of matrices
+
+#include <stdio.h>
+int main() {
+  int r, c, a[100][100], b[100][100], sum[100][100], i, j;
+  printf("Enter the number of rows (between 1 and 100): ");
+  scanf("%d", &r);
+  printf("Enter the number of columns (between 1 and 100): ");
+  scanf("%d", &c);
+
+  printf("\nEnter elements of 1st matrix:\n");
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+      printf("Enter element a%d%d: ", i + 1, j + 1);
+      scanf("%d", &a[i][j]);
+    }
+
+  printf("Enter elements of 2nd matrix:\n");
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+      printf("Enter element b%d%d: ", i + 1, j + 1);
+      scanf("%d", &b[i][j]);
+    }
+
+  // adding two matrices
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+      sum[i][j] = a[i][j] + b[i][j];
+    }
+
+  // printing the result
+  printf("\nSum of two matrices: \n");
+  for (i = 0; i < r; ++i)
+    for (j = 0; j < c; ++j) {
+      printf("%d   ", sum[i][j]);
+      if (j == c - 1) {
+        printf("\n\n");
+      }
+    }
+
+  return 0;
+}
+-------------------------------------------------------------------
+Matrix multiplication
+#include <stdio.h>
+
+// function to get matrix elements entered by the user
+void getMatrixElements(int matrix[][10], int row, int column) {
+
+   printf("\nEnter elements: \n");
+
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < column; ++j) {
+         printf("Enter a%d%d: ", i + 1, j + 1);
+         scanf("%d", &matrix[i][j]);
+      }
+   }
+}
+
+// function to multiply two matrices
+void multiplyMatrices(int first[][10],
+                      int second[][10],
+                      int result[][10],
+                      int r1, int c1, int r2, int c2) {
+
+   // Initializing elements of matrix mult to 0.
+   for (int i = 0; i < r1; ++i) {
+      for (int j = 0; j < c2; ++j) {
+         result[i][j] = 0;
+      }
+   }
+
+   // Multiplying first and second matrices and storing it in result
+   for (int i = 0; i < r1; ++i) {
+      for (int j = 0; j < c2; ++j) {
+         for (int k = 0; k < c1; ++k) {
+            result[i][j] += first[i][k] * second[k][j];
+         }
+      }
+   }
+}
+
+// function to display the matrix
+void display(int result[][10], int row, int column) {
+
+   printf("\nOutput Matrix:\n");
+   for (int i = 0; i < row; ++i) {
+      for (int j = 0; j < column; ++j) {
+         printf("%d  ", result[i][j]);
+         if (j == column - 1)
+            printf("\n");
+      }
+   }
+}
+
+int main() {
+   int first[10][10], second[10][10], result[10][10], r1, c1, r2, c2;
+   printf("Enter rows and column for the first matrix: ");
+   scanf("%d %d", &r1, &c1);
+   printf("Enter rows and column for the second matrix: ");
+   scanf("%d %d", &r2, &c2);
+
+   // Taking input until
+   // 1st matrix columns is not equal to 2nd matrix row
+   while (c1 != r2) {
+      printf("Error! Enter rows and columns again.\n");
+      printf("Enter rows and columns for the first matrix: ");
+      scanf("%d%d", &r1, &c1);
+      printf("Enter rows and columns for the second matrix: ");
+      scanf("%d%d", &r2, &c2);
+   }
+
+   // get elements of the first matrix
+   getMatrixElements(first, r1, c1);
+
+   // get elements of the second matrix
+   getMatrixElements(second, r2, c2);
+
+   // multiply two matrices.
+   multiplyMatrices(first, second, result, r1, c1, r2, c2);
+
+   // display the result
+   display(result, r1, c2);
+
+   return 0;
+}
+--------------------------------------------------------------------------
+Transpose
+
+#include <stdio.h>
+int main() {
+  int a[10][10], transpose[10][10], r, c;
+  printf("Enter rows and columns: ");
+  scanf("%d %d", &r, &c);
+
+  // asssigning elements to the matrix
+  printf("\nEnter matrix elements:\n");
+  for (int i = 0; i < r; ++i)
+  for (int j = 0; j < c; ++j) {
+    printf("Enter element a%d%d: ", i + 1, j + 1);
+    scanf("%d", &a[i][j]);
+  }
+
+  // printing the matrix a[][]
+  printf("\nEntered matrix: \n");
+  for (int i = 0; i < r; ++i)
+  for (int j = 0; j < c; ++j) {
+    printf("%d  ", a[i][j]);
+    if (j == c - 1)
+    printf("\n");
+  }
+
+  // computing the transpose
+  for (int i = 0; i < r; ++i)
+  for (int j = 0; j < c; ++j) {
+    transpose[j][i] = a[i][j];
+  }
+
+  // printing the transpose
+  printf("\nTranspose of the matrix:\n");
+  for (int i = 0; i < c; ++i)
+  for (int j = 0; j < r; ++j) {
+    printf("%d  ", transpose[i][j]);
+    if (j == r - 1)
+    printf("\n");
+  }
+  return 0;
+}
+------------------------------------------------------------------------------------
+half star 
+*
+* *
+* * *
+* * * *
+* * * * *
+
+#include <stdio.h>
+int main() {
+   int i, j, rows;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 1; i <= rows; ++i) {
+      for (j = 1; j <= i; ++j) {
+         printf("* ");
+      }
+      printf("\n");
+   }
+   return 0;
+}
+----------------------------------------------------------------------------------------
+Half Pyramid of Numbers
+1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5
+
+#include <stdio.h>
+int main() {
+   int i, j, rows;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 1; i <= rows; ++i) {
+      for (j = 1; j <= i; ++j) {
+         printf("%d ", j);
+      }
+      printf("\n");
+   }
+   return 0;
+}
+-----------------------------------------------------------
+Half Pyramid of Alphabets
+
+A
+B B
+C C C
+D D D D
+E E E E E
+
+#include <stdio.h>
+int main() {
+   int i, j;
+   char input, alphabet = 'A';
+   printf("Enter an uppercase character you want to print in the last row: ");
+   scanf("%c", &input);
+   for (i = 1; i <= (input - 'A' + 1); ++i) {
+      for (j = 1; j <= i; ++j) {
+         printf("%c ", alphabet);
+      }
+      ++alphabet;
+      printf("\n");
+   }
+   return 0;
+}
+---------------------------------------------------
+Inverted half pyramid of *
+
+* * * * *
+* * * *
+* * * 
+* *
+*
+#include <stdio.h>
+int main() {
+   int i, j, rows;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = rows; i >= 1; --i) {
+      for (j = 1; j <= i; ++j) {
+         printf("* ");
+      }
+      printf("\n");
+   }
+   return 0;
+}
+----------------------------------------------------
+Inverted half pyramid of numbers
+
+1 2 3 4 5
+1 2 3 4 
+1 2 3
+1 2
+1
+
+#include <stdio.h>
+int main() {
+   int i, j, rows;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = rows; i >= 1; --i) {
+      for (j = 1; j <= i; ++j) {
+         printf("%d ", j);
+      }
+      printf("\n");
+   }
+   return 0;
+}
+----------------------------------------------------------
+Full Pyramid of *
+        *
+      * * *
+    * * * * *
+  * * * * * * *
+* * * * * * * * *
+#include <stdio.h>
+int main() {
+   int i, space, rows, k = 0;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 1; i <= rows; ++i, k = 0) {
+      for (space = 1; space <= rows - i; ++space) {
+         printf("  ");
+      }
+      while (k != 2 * i - 1) {
+         printf("* ");
+         ++k;
+      }
+      printf("\n");
+   }
+   return 0;
+}
+--------------------------------------------
+Full Pyramid of Numbers
+        1
+      2 3 2
+    3 4 5 4 3
+  4 5 6 7 6 5 4
+5 6 7 8 9 8 7 6 5
+
+#include <stdio.h>
+int main() {
+   int i, space, rows, k = 0, count = 0, count1 = 0;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 1; i <= rows; ++i) {
+      for (space = 1; space <= rows - i; ++space) {
+         printf("  ");
+         ++count;
+      }
+      while (k != 2 * i - 1) {
+         if (count <= rows - 1) {
+            printf("%d ", i + k);
+            ++count;
+         } else {
+            ++count1;
+            printf("%d ", (i + k - 2 * count1));
+         }
+         ++k;
+      }
+      count1 = count = k = 0;
+      printf("\n");
+   }
+   return 0;
+}
+------------------------------------------
+* * * * * * * * *
+  * * * * * * *
+    * * * * *
+      * * *
+        *
+#include <stdio.h>
+int main() {
+   int rows, i, j, space;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = rows; i >= 1; --i) {
+      for (space = 0; space < rows - i; ++space)
+         printf("  ");
+      for (j = i; j <= 2 * i - 1; ++j)
+         printf("* ");
+      for (j = 0; j < i - 1; ++j)
+         printf("* ");
+      printf("\n");
+   }
+   return 0;
+}
+-----------------------------------------------
+Pascals triangle
+
+           1
+         1   1
+       1   2   1
+     1   3   3    1
+   1  4    6   4   1
+ 1  5   10   10  5   1
+
+#include <stdio.h>
+int main() {
+   int rows, coef = 1, space, i, j;
+   printf("Enter the number of rows: ");
+   scanf("%d", &rows);
+   for (i = 0; i < rows; i++) {
+      for (space = 1; space <= rows - i; space++)
+         printf("  ");
+      for (j = 0; j <= i; j++) {
+         if (j == 0 || i == 0)
+            coef = 1;
+         else
+            coef = coef * (i - j + 1) / j;
+         printf("%4d", coef);
+      }
+      printf("\n");
+   }
+   return 0;
+}
+--------------------------------------------------
+Vowels,cons,digits,spaces
+
+#include <stdio.h>
+int main() {
+
+  char line[150];
+  int vowels, consonant, digit, space;
+
+  // initialize all variables to 0
+  vowels = consonant = digit = space = 0;
+
+  // get full line of string input
+  printf("Enter a line of string: ");
+  fgets(line, sizeof(line), stdin);
+
+  // loop through each character of the string
+  for (int i = 0; line[i] != '\0'; ++i) {
+
+    // convert character to lowercase
+    line[i] = tolower(line[i]);
+
+    // check if the character is a vowel
+    if (line[i] == 'a' || line[i] == 'e' || line[i] == 'i' ||
+        line[i] == 'o' || line[i] == 'u') {
+
+      // increment value of vowels by 1
+      ++vowels;
+    }
+
+    // if it is not a vowel and if it is an alphabet, it is a consonant
+    else if ((line[i] >= 'a' && line[i] <= 'z')) {
+      ++consonant;
+    }
+
+    // check if the character is a digit
+    else if (line[i] >= '0' && line[i] <= '9') {
+      ++digit;
+    }
+
+    // check if the character is an empty space
+    else if (line[i] == ' ') {
+      ++space;
+    }
+  }
+
+  printf("Vowels: %d", vowels);
+  printf("\nConsonants: %d", consonant);
+  printf("\nDigits: %d", digit);
+  printf("\nWhite spaces: %d", space);
+
+  return 0;
+}
+---------------------------------------------------
+Remove Characters in String Except Alphabets
+#include <stdio.h>
+int main() {
+   char line[150];
+   
+   printf("Enter a string: ");
+   fgets(line, sizeof(line), stdin); // take input
+
+
+   for (int i = 0, j; line[i] != '\0'; ++i) {
+
+      // enter the loop if the character is not an alphabet
+      // and not the null character
+      while (!(line[i] >= 'a' && line[i] <= 'z') && !(line[i] >= 'A' && line[i] <= 'Z') && !(line[i] == '\0')) {
+         for (j = i; line[j] != '\0'; ++j) {
+
+            // if jth element of line is not an alphabet,
+            // assign the value of (j+1)th element to the jth element
+            line[j] = line[j + 1];
+         }
+         line[j] = '\0';
+      }
+   }
+   printf("Output String: ");
+   puts(line);
+   return 0;
+}
+
+
+
+
+
 
 https://www.programiz.com/c-programming/examples
 
