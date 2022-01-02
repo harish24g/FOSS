@@ -61,3 +61,21 @@ https://github.com/michaelfahmy/cloudsim-task-scheduling
 
 ---------------------FILE TRANSFER GUEST TO HOST----------------------
 https://www.tecmint.com/enable-share-folder-in-vmware-workstation/
+
+------ OPEN STACK-------------------------------
+sudo apt update
+sudo reboot
+create devstack user by the name stack
+sudo useradd /bin/bash -d /opt/stack -m stack
+echo " stack ALL= (ALL) NOPASSWD :ALL"| sudo tee/etc/sudoers.d/stack sudo su -stack
+download git
+git clone https://git.ooenstack.org/devstack
+
+cd devstack
+Create local.conf file
+
+./stack.sh
+
+See result at https:// IP ADDRESS /dashboard
+
+Openstack theory https://www.redhat.com/en/topics/openstack
